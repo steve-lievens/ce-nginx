@@ -1,0 +1,9 @@
+FROM nginx:1.23.3
+COPY mynginx.conf /etc/nginx/nginx.conf
+COPY index.html /code/index.html
+COPY instanalibs/glibc-nginx-1.23.3-ngx_http_ot_module.so /usr/lib/nginx/modules
+COPY instanalibs/glibc-libinstana_sensor.so /usr/local/lib/
+#RUN chmod 644 /usr/lib/nginx/modules/glibc-nginx-1.23.3-ngx_http_ot_module
+WORKDIR /code
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
